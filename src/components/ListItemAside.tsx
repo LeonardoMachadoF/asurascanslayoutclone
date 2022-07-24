@@ -5,7 +5,7 @@ export const ListItemAside = () => {
     return (
         <div className="xl:w-[100%]">
             <ul>
-                <li className="flex items-center h-[100%] m-4">
+                <li className="flex items-center h-[100%] sm:m-4">
                     <div className="border p-1 pl-2.5 pr-2.5 rounded border-zinc-600 mr-4">
                         1
                     </div>
@@ -17,7 +17,7 @@ export const ListItemAside = () => {
                             />
                         </Link>
                     </div>
-                    <div className="w-[250px] h-[100%] flex flex-col justify-around">
+                    <div className="sm:w-[200px] w-[100%] h-[100%] flex flex-col justify-around">
                         <Link to='/' className="text-[15px] font-bold hover:text-purple-600 transition-all">Reaper of the Drifting Moon</Link>
                         <div className="text-zinc-300 text-sm">
                             <span className="text-zinc-50 flex flex-wrap gap-x-[3px]">

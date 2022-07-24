@@ -33,7 +33,7 @@ export const Aside = () => {
 
 
     return (
-        <div className="xl:w-[340px] w-[90%] h-[1300px] bg-[#222] mt-10 m-auto xl:m-0 xl:mt-10">
+        <div className="xl:w-[340px] max-w-[100%] h-[1300px] bg-[#222] mt-10 m-auto xl:m-0 xl:mt-10">
             <div className="bg-[#333] p-2 rounded ml-2 mr-2">
                 <ul className="flex w-[100%] justify-around m-auto text-sm">
                     <DataRange handleRangeClick={handleRangeClick} range='Weekly' active={activeW} />
@@ -42,7 +42,7 @@ export const Aside = () => {
                 </ul>
             </div>
 
-            <div className="flex xl:block flex-wrap xl:flex-nowrap">
+            <div className="flex xl:block flex-wrap xl:flex-nowrap overflow-hidden">
                 <ListItemAside />
                 <ListItemAside />
                 <ListItemAside />

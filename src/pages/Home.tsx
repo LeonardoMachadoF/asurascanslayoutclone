@@ -42,7 +42,7 @@ export const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <img className="h-[124px] mt-[-90px]" src="https://www.asurascans.com/wp-content/uploads/2022/04/cover.jpg" alt="" />
+                        <img className="h-[100px] sm:h-[124px] pr-2 mt-[-90px]" src="https://www.asurascans.com/wp-content/uploads/2022/04/cover.jpg" alt="" />
                     </div>
                 </div>
 
