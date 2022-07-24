@@ -6,9 +6,9 @@ import { ItemPopular } from "../components/ItemPopular"
 
 export const Home = () => {
     return (
-        <main className="flex-1">
-            <div className="flex h-[280px] m-6 justify-between">
-                <div className="w-[68%] bg-gradient-to-br h-[100%] relative">
+        <main className="flex-1 sm:m-6">
+            <div className="flex h-[300px] justify-between">
+                <div className="w-[100%] xl:w-[68%] bg-gradient-to-br h-[100%] relative">
                     <div className="absolute bg-[url('https://www.asurascans.com/wp-content/uploads/2022/04/cover.jpg')] w-[100%] h-[100%] blur opacity-25"></div>
                     <div className="absolute w-[100%] p-5 flex justify-between items-center">
                         <div className=" mt-5">
@@ -46,7 +46,7 @@ export const Home = () => {
                     </div>
                 </div>
 
-                <div className="w-[30%] relative bg-slate-600 bg-[url('https://www.asurascans.com/wp-content/uploads/2021/10/DisasterheroCover01.png')] bg-center bg-cover">
+                <div className="hidden xl:block w-[30%] relative bg-slate-600 bg-[url('https://www.asurascans.com/wp-content/uploads/2021/10/DisasterheroCover01.png')] bg-center bg-cover">
                     <div className="absolute bg-zinc-900 w-[100%] h-[100%] opacity-60"></div>
                     <div className="absolute top-20">
                         <p className="text-center">
@@ -60,9 +60,9 @@ export const Home = () => {
 
             </div>
 
-            <div className="h-[360px] bg-[#222222] m-6">
+            <div className="h-[360px] bg-[#222222] mt-10">
                 <div className="font-bold pl-4 pt-2 pb-2 border-b-[1px] border-zinc-600">Popular Today</div>
-                <div className="flex">
+                <div className="flex overflow-hidden">
                     <ItemPopular />
                     <ItemPopular />
                     <ItemPopular />
@@ -72,7 +72,7 @@ export const Home = () => {
 
             </div>
 
-            <div className="bg-[#222222] m-6">
+            <div className="bg-[#222222] mt-4">
                 <div className="font-bold pl-4 pt-2 pb-2 border-b-[1px] border-zinc-600">Latest Update</div>
                 <div className="flex flex-wrap justify-center">
                     <ItemLatest />

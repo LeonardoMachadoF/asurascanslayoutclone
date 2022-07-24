@@ -3,9 +3,9 @@ import { Link } from "react-router-dom"
 
 export const ListItemAside = () => {
     return (
-        <div>
+        <div className="xl:w-[100%]">
             <ul>
-                <li className="flex items-center h-[100px] m-4">
+                <li className="flex items-center h-[100%] m-4">
                     <div className="border p-1 pl-2.5 pr-2.5 rounded border-zinc-600 mr-4">
                         1
                     </div>

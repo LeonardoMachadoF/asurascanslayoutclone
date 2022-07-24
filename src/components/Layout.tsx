@@ -11,7 +11,7 @@ export const Layout = ({ children }: Props) => {
     return (
         <div>
             <Header />
-            <div className="w-[1200px] m-auto flex">
+            <div className="xl:w-[1200px] m-auto flex flex-col xl:flex-row w-[100%]">
                 {children}
                 <Aside />
             </div>

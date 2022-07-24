@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 export const ItemPopular = () => {
     return (
-        <div className="p-4 pt-5 w-[50%]">
+        <div className="p-4 pt-5 min-w-[180px]">
             <div className="relative">
                 <Link to='/'>
                     <img

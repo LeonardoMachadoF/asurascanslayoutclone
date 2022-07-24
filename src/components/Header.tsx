@@ -18,7 +18,7 @@ export const Header = () => {
                         <div className="flex items-center">
                             <input
                                 type="text"
-                                className="w-[350px] h-[34px] bg-[#17151b] pt-1.5 pr-7 pb-1.5 pl-5 mr-10 rounded border border-zinc-800 placeholder-zinc-100 text-sm"
+                                className="sm:w-[350px] w-[60%] h-[34px] bg-[#17151b] pt-1.5 pr-7 pb-1.5 pl-5 mr-10 rounded border border-zinc-800 placeholder-zinc-100 text-sm"
                                 placeholder="Search"
                             />
                             <MagnifyingGlass size={16} color="#fafafa" className="relative right-[70px]" />
@@ -33,7 +33,7 @@ export const Header = () => {
                     </div>
                 </div>
             </div>
-            <div className="h-10 bg-[#913fe2]">
+            <div className="h-10 bg-[#913fe2] hidden sm:block">
                 <div className="max-w-[1200px] m-auto h-[100%] flex items-center justify-between">
                     <ul className="flex items-center h-[100%] w-[400px] justify-around text-[15px]">
                         <li className="hover:bg-purple-700 h-[100%] flex items-center pl-2 pr-2 transition-all">
