@@ -15,8 +15,8 @@ export const ItemPopular = () => {
                 <span className="absolute bottom-2 left-1 text-sm bg-red-800 rounded pl-1 pr-1">MANHWA</span>
             </div>
             <div className="w-[100%] text-sm mt-1">
-                <div className="font-bold mb-1">Return of the Mount Hua Sect</div>
-                <span className="text-zinc-400 text-[12px]">Chapter 72</span>
+                <Link to='/' className="font-bold mb-1 block hover:text-purple-600 transition-all cursor-pointer">Return of the Mount Hua Sect</Link>
+                <a href="/" className="text-zinc-400 text-[12px]">Chapter 72</a>
                 <div className="flex items-center">
                     <Star weight="fill" color="yellow" />
                     <Star weight="fill" color="yellow" />

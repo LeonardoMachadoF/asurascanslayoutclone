@@ -14,7 +14,7 @@ export const ItemLatest = () => {
                 </Link>
             </div>
             <div className="w-[100%] text-sm ml-4 mt-1 flex flex-col">
-                <div className="font-bold mb-1">Doctor's Rebirth</div>
+                <Link to='/' className="font-bold mb-1 hover:text-purple-600 transition-all ">Doctor's Rebirth</Link>
                 <Chapter chapter={93} />
                 <Chapter chapter={92} />
                 <Chapter chapter={91} />

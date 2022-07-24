@@ -36,16 +36,16 @@ export const Header = () => {
             <div className="h-10 bg-[#913fe2]">
                 <div className="max-w-[1200px] m-auto h-[100%] flex items-center justify-between">
                     <ul className="flex items-center h-[100%] w-[400px] justify-around text-[15px]">
-                        <li>
+                        <li className="hover:bg-purple-700 h-[100%] flex items-center pl-2 pr-2 transition-all">
                             <Link to='/'>Home</Link>
                         </li>
-                        <li>
+                        <li className="hover:bg-purple-700 h-[100%] flex items-center pl-2 pr-2 transition-all">
                             <Link to='/'>Bookmarks</Link>
                         </li>
-                        <li>
+                        <li className="hover:bg-purple-700 h-[100%] flex items-center pl-2 pr-2 transition-all">
                             <Link to='/'>Comics</Link>
                         </li>
-                        <li>
+                        <li className="hover:bg-purple-700 h-[100%] flex items-center pl-2 pr-2 transition-all">
                             <Link to='/'>Language ▼</Link>
                         </li>
                     </ul>
