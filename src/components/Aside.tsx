@@ -1,5 +1,6 @@
+import axios from "axios"
 import { Star } from "phosphor-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { DataRange } from "./DataRange"
 import { ListItemAside } from "./ListItemAside"
@@ -8,6 +9,15 @@ export const Aside = () => {
     const [activeW, setActiveW] = useState<boolean>(true)
     const [activeM, setActiveM] = useState<boolean>(false);
     const [activeA, setActiveA] = useState<boolean>(false);
+    const [all, setAll] = useState<any>();
+
+    useEffect(() => {
+        let setAllList = async () => {
+            let listReq = await axios.get('https://murmuring-reef-63947.herokuapp.com/api/novels')
+            setAll(listReq.data.novels)
+        }
+        setAllList()
+    }, [])
 
     const handleRangeClick = (e: any) => {
         e.preventDefault()
@@ -33,7 +43,7 @@ export const Aside = () => {
 
 
     return (
-        <div className="xl:w-[340px] max-w-[100%] h-[1300px] bg-[#222] mt-10 m-auto xl:m-0 xl:mt-10">
+        <div className={`xl:w-[340px] h-[100%] max-w-[100%] bg-[#222] mt-10 m-auto xl:m-0 xl:mt-10`}>
             <div className="bg-[#333] p-2 rounded ml-2 mr-2">
                 <ul className="flex w-[100%] justify-around m-auto text-sm">
                     <DataRange handleRangeClick={handleRangeClick} range='Weekly' active={activeW} />
@@ -43,16 +53,11 @@ export const Aside = () => {
             </div>
 
             <div className="flex xl:block flex-wrap xl:flex-nowrap overflow-hidden">
-                <ListItemAside />
-                <ListItemAside />
-                <ListItemAside />
-                <ListItemAside />
-                <ListItemAside />
-                <ListItemAside />
-                <ListItemAside />
-                <ListItemAside />
-                <ListItemAside />
-                <ListItemAside />
+                {all &&
+                    all.map((i: any, k: number) => (
+                        <ListItemAside key={k} item={i} k={k + 1} />
+                    ))
+                }
             </div>
 
 

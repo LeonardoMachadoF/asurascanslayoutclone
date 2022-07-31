@@ -1,31 +1,35 @@
 import { Star } from "phosphor-react"
 import { Link } from "react-router-dom"
 
-export const ListItemAside = () => {
+export const ListItemAside = ({ item, k }: any) => {
     return (
-        <div className="xl:w-[100%]">
+        <div className="xl:w-[100%] pt-2 pb-2">
             <ul>
                 <li className="flex items-center h-[100%] sm:m-4">
                     <div className="border p-1 pl-2.5 pr-2.5 rounded border-zinc-600 mr-4">
-                        1
+                        {k}
                     </div>
                     <div>
                         <Link to="" className="w-[64px] block mr-2">
                             <img
-                                src="https://www.asurascans.com/wp-content/uploads/2022/07/resource.jpg"
+                                src={item.imagesUrl}
                                 alt=""
                             />
                         </Link>
                     </div>
                     <div className="sm:w-[200px] w-[100%] h-[100%] flex flex-col justify-around">
-                        <Link to='/' className="text-[15px] font-bold hover:text-purple-600 transition-all">Reaper of the Drifting Moon</Link>
+                        <Link to={`${item.slug}`} className="text-[15px] font-bold hover:text-purple-600 transition-all">{item.title}</Link>
                         <div className="text-zinc-300 text-sm">
                             <span className="text-zinc-50 flex flex-wrap gap-x-[3px]">
                                 <span className="mr-1">Genres:</span>
-                                <a className="hover:text-purple-600 transition-all" href="https://www.asurascans.com/genres/action/" rel="tag">Action,</a>
-                                <a className="hover:text-purple-600 transition-all" href="https://www.asurascans.com/genres/adventure/" rel="tag">Adventure,</a>
-                                <a className="hover:text-purple-600 transition-all" href="https://www.asurascans.com/genres/fantasy/" rel="tag">Fantasy,</a>
-                                <a className="hover:text-purple-600 transition-all" href="https://www.asurascans.com/genres/shounen/" rel="tag">Shounen</a>
+                                {item.categories.map((i: any, k: number) => {
+                                    if (item.categories.length === k + 1) {
+                                        return <a key={i.Category.id} href={`http://localhost:3500/api/novels?genre=${i.Category.id}`} rel="tag">{i.Category.name}</a>
+                                    } else {
+                                        return <a key={i.Category.id} href={`http://localhost:3500/api/novels?genre=${i.Category.id}`} rel="tag">{i.Category.name}, </a>
+                                    }
+
+                                })}
                             </span>
                         </div>
                         <div className="flex items-center">

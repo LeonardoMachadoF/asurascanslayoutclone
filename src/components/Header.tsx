@@ -6,13 +6,13 @@ export const Header = () => {
         <div>
             <div className="bg-[#0b0a0d]">
                 <div className="flex justify-between items-center max-w-[1200px] m-auto h-[60px]">
-                    <div className="logo">
+                    <Link to='/' className="logo">
                         <img
                             src="https://www.asurascans.com/wp-content/uploads/2021/03/Group_1.png"
                             className="w-[50px]"
                             alt=""
                         />
-                    </div>
+                    </Link>
 
                     <div className="searchArea flex items-center">
                         <div className="flex items-center">
@@ -27,7 +27,6 @@ export const Header = () => {
                             <input id="checkTheme" className="opacity-0 w-0 h-0" type="checkbox" />
                             <span>
                                 <Moon size={32} color="#eee" />
-                                {/* <Sun size={32} color="#fafafa" /> */}
                             </span>
                         </label>
                     </div>
@@ -51,7 +50,7 @@ export const Header = () => {
                     </ul>
                     <div className="flex items-center rounded-sm p-1 pl-2 pr-2 bg-[rgb(0,0,0)] bg-opacity-30">
                         <Star size={16} color="#eee" className="mr-2" weight="bold" />
-                        <Link to='/random' className="text-[12px]">Surprise Me</Link>
+                        <Link to='/' className="text-[12px]">Surprise Me</Link>
                     </div>
                 </div>
             </div>
