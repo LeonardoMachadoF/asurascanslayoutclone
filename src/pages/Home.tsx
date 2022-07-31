@@ -40,8 +40,8 @@ export const Home = () => {
                 : <div className="flex h-[300px] justify-between"></div>
             }
 
-            {all
-                ? <PopularItens list={all} />
+            {popularList
+                ? <PopularItens list={popularList} />
                 : <div className="h-[360px] bg-[#222222] mt-10 ">
                     <div className="font-bold pl-4 pt-2 pb-2 border-b-[1px] border-zinc-600"></div>
                 </div>
