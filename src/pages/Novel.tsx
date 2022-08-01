@@ -44,17 +44,17 @@ export const Novel = () => {
     return (
         <>
             {novel &&
-                <div className="flex-1 mr-4">
+                <div className="flex-1 xl:mr-4">
                     <div className="text-[13px] bg-[#222] h-10 flex items-center mt-6 rounded pl-4">
                         <Link className="mr-1" to='/'>Home - </Link>
                         <Link to='/'>{novel.novel.title}</Link>
                     </div>
-                    <div className="bg-[#222] flex mt-6 rounded">
+                    <div className="bg-[#222] flex mt-6 rounded items-center flex-col xl:items-start xl:flex-row">
                         <div className="mt-4 w-[200px] flex flex-col items-center">
                             <div className="p-4">
                                 <img className="w-[180px] rounded" src={novel.novel.imagesUrl} alt="" />
                             </div>
-                            <div className="w-[180px] flex text-[13px] items-center justify-center bg-[#913fe2] pt-2 pb-2 ml-3 mr-3 rounded">
+                            <div className="w-[300px] xl:w-[180px] flex text-[13px] items-center justify-center bg-[#913fe2] pt-2 pb-2 ml-3 mr-3 rounded">
                                 <Bookmark size={16} color="#fff" weight="bold" className="mr-1" />
                                 <span>Bookmark</span>
                             </div>
@@ -62,7 +62,7 @@ export const Novel = () => {
                                 <span className="text-[13px] text-[#b8b8b8b8]">Followed by 15467 people</span>
                             </div>
                             <div>
-                                <div className="flex items-center justify-between w-[180px] pl-2 pr-2 bg-[#343434] rounded">
+                                <div className="flex items-center justify-between w-[300px] xl:w-[180px] pl-2 pr-2 bg-[#343434] rounded">
                                     <div className="flex pt-2 pb-2">
                                         <Star weight="fill" color="yellow" />
                                         <Star weight="fill" color="yellow" />
@@ -72,19 +72,21 @@ export const Novel = () => {
                                     </div>
                                     <small className="ml-1 mt-1">10</small>
                                 </div>
-                                <div className="flex items-center justify-between w-[180px] pl-2 pr-2 bg-[#343434] rounded mt-2">
-                                    <div className="flex pt-2 pb-2 justify-between w-[180px] text-[13px] text-[#b8b8b8]">
-                                        Status: <span>{novel.novel.status.toLowerCase()}</span>
+                                <div className="xl:block flex justify-between">
+                                    <div className="flex items-center justify-between w-[140px] xl:w-[180px] pl-2 pr-2 bg-[#343434] rounded mt-2">
+                                        <div className="flex pt-2 pb-2 justify-between xl:w-[180px] text-[13px] text-[#b8b8b8]">
+                                            Status: <span className="xl:ml-0  ml-6">{novel.novel.status.toLowerCase()}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="flex items-center justify-between w-[180px] pl-2 pr-2 bg-[#343434] rounded mt-2">
-                                    <div className="flex pt-2 pb-2 justify-between w-[180px] text-[13px] text-[#b8b8b8]">
-                                        Type: <strong className="text-zinc-200">Manhwa</strong>
+                                    <div className="flex items-center justify-between w-[140px] xl:w-[180px] pl-2 pr-2 bg-[#343434] rounded mt-2">
+                                        <div className="flex pt-2 pb-2 justify-between xl:w-[180px] text-[13px] text-[#b8b8b8]">
+                                            Type: <strong className="text-zinc-200 xl:ml-0 ml-6">Manhwa</strong>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="pb-20">
+                        <div className="pb-20 p-2 ">
                             <div className="mt-8 text-2xl font-bold">
                                 <h1>{novel.novel.title}</h1>
                             </div>
