@@ -13,16 +13,21 @@ export const Home = () => {
     const [all, setAll] = useState<any>()
     const { state, dispatch } = useContext(Context);
 
-
-
     useEffect(() => {
         let getList = async () => {
-            let listReq = await axios.get('https://murmuring-reef-63947.herokuapp.com/api/novels')
-            setAll(listReq.data.novels);
-            let copy = [...listReq.data.novels]
-            let listPopular = copy.sort((a: any, b: any) => a.views > b.views ? -1 : 1)
-            setList(listPopular)
-            dispatch({ type: 'SETNOVELS', payload: { novels: listReq.data.novels } })
+            if (state.novels.novels.length > 0) {
+                setAll(state.novels.novels)
+                let copy = [...state.novels.novels]
+                let listPopular = copy.sort((a: any, b: any) => a.views > b.views ? -1 : 1)
+                setList(listPopular)
+            } else {
+                let listReq = await axios.get('https://murmuring-reef-63947.herokuapp.com/api/novels')
+                setAll(listReq.data.novels);
+                let copy = [...listReq.data.novels]
+                let listPopular = copy.sort((a: any, b: any) => a.views > b.views ? -1 : 1)
+                setList(listPopular)
+                dispatch({ type: 'SETNOVELS', payload: { novels: listReq.data.novels } })
+            }
         }
 
         getList();

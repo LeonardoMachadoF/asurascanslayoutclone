@@ -145,6 +145,10 @@ export const Novel = () => {
                         </div>
                     </div>
                 </div>}
+
+            {!novel &&
+                <div className="flex-1 xl:mr-4"></div>
+            }
         </>
     )
 }
