@@ -16,3 +16,7 @@ body{
 .blur{
     filter: blur(6px);
 }
+
+.scrollHidden::-webkit-scrollbar {
+    display: none; 
+}
