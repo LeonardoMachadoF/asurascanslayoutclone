@@ -1,7 +1,8 @@
 import axios from "axios"
 import { Star } from "phosphor-react"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { Context } from "../Context/Context"
 import { DataRange } from "./DataRange"
 import { ListItemAside } from "./ListItemAside"
 
@@ -10,11 +11,17 @@ export const Aside = () => {
     const [activeM, setActiveM] = useState<boolean>(false);
     const [activeA, setActiveA] = useState<boolean>(false);
     const [all, setAll] = useState<any>();
+    const { state, dispatch } = useContext(Context);
 
     useEffect(() => {
         let setAllList = async () => {
-            let listReq = await axios.get('https://murmuring-reef-63947.herokuapp.com/api/novels')
-            setAll(listReq.data.novels)
+            if (state.novels.novels.length > 0) {
+                setAll(state.novels.novels)
+            } else {
+                let listReq = await axios.get('https://murmuring-reef-63947.herokuapp.com/api/novels')
+                dispatch({ type: 'SETNOVELS', payload: { novels: listReq.data.novels } });
+                setAll(listReq.data.novels)
+            }
         }
         setAllList()
     }, [])

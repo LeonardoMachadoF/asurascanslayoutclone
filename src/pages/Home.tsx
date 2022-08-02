@@ -1,37 +1,47 @@
 import axios, { AxiosResponse } from "axios"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { ItemLatest } from "../components/ItemLatest"
 import { ItemPopular } from "../components/ItemPopular"
 import { MainHeaderHome } from "../components/MainHeaderHome"
 import { PopularItens } from "../components/PopularItens"
+import { Context } from "../Context/Context"
 
 
 export const Home = () => {
-    const [list, setList] = useState<AxiosResponse<any, any>>()
+    const [list, setList] = useState<any>()
     const [popularList, setPopularList] = useState<AxiosResponse<any, any>>()
     const [all, setAll] = useState<any>()
+    const { state, dispatch } = useContext(Context);
+
 
 
     useEffect(() => {
         let getList = async () => {
-            let listReq = await axios.get('https://murmuring-reef-63947.herokuapp.com/api/novels?views=desc&take=2')
-            setList(listReq.data.novels)
-        }
-
-        let getPopularList = async () => {
-            let listReq = await axios.get('https://murmuring-reef-63947.herokuapp.com/api/novels?views=desc&skip=2')
-            setPopularList(listReq.data.novels)
-        }
-
-        let setAllList = async () => {
             let listReq = await axios.get('https://murmuring-reef-63947.herokuapp.com/api/novels')
-            setAll(listReq.data.novels)
+            setAll(listReq.data.novels);
+            let copy = [...listReq.data.novels]
+            let listPopular = copy.sort((a: any, b: any) => a.views > b.views ? -1 : 1)
+            setList(listPopular)
+            dispatch({ type: 'SETNOVELS', payload: { novels: listReq.data.novels } })
         }
 
         getList();
-        getPopularList();
-        setAllList();
     }, [])
+
+    useEffect(() => {
+        let getPopularList = async () => {
+            let listA: any = []
+            if (list) {
+                list.map((i: any, k: number) => {
+                    if (k > 1) {
+                        listA.push(i)
+                    }
+                })
+            }
+            setPopularList(listA)
+        }
+        getPopularList()
+    }, [list])
 
     return (
         <main className="flex-1 sm:m-6 overflow-hidden">

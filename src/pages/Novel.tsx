@@ -13,7 +13,7 @@ export const Novel = () => {
             let x = window.pageYOffset;
 
             setInterval(() => {
-                if (x > 0) {
+                if (x > -10) {
                     window.scrollTo(0, x)
                     x = x - 10
                 }
