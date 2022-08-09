@@ -1,12 +1,14 @@
 import axios from "axios";
 import { Bookmark, FacebookLogo, PinterestLogo, Star, TwitterLogo, WhatsappLogo } from "phosphor-react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom"
+import { Context } from "../Context/Context";
 
 export const Novel = () => {
     const [novel, setNovel] = useState<any>();
     const { slug } = useParams();
+    const { state, dispatch } = useContext(Context);
 
     useEffect(() => {
         const toTop = () => {
@@ -45,11 +47,11 @@ export const Novel = () => {
         <>
             {novel &&
                 <div className="flex-1 xl:mr-4">
-                    <div className="text-[13px] bg-[#222] h-10 flex items-center mt-6 rounded pl-4">
+                    <div className={`text-[13px] ${state.theme.mainColor} h-10 flex items-center mt-6 rounded pl-4`}>
                         <Link className="mr-1" to='/'>Home - </Link>
                         <Link to='/'>{novel.novel.title}</Link>
                     </div>
-                    <div className="bg-[#222] flex mt-6 rounded items-center flex-col xl:items-start xl:flex-row">
+                    <div className={`${state.theme.mainColor}  flex mt-6 rounded items-center flex-col xl:items-start xl:flex-row`}>
                         <div className="mt-4 w-[200px] flex flex-col items-center">
                             <div className="p-4">
                                 <img className="w-[180px] rounded" src={novel.novel.imagesUrl} alt="" />
@@ -59,28 +61,28 @@ export const Novel = () => {
                                 <span>Bookmark</span>
                             </div>
                             <div className="p-1">
-                                <span className="text-[13px] text-[#b8b8b8b8]">Followed by 15467 people</span>
+                                <span className={`text-[13px] ${state.theme.textColor}`}>Followed by 15467 people</span>
                             </div>
                             <div>
-                                <div className="flex items-center justify-between w-[300px] xl:w-[180px] pl-2 pr-2 bg-[#343434] rounded">
+                                <div className={`flex items-center justify-between w-[300px] xl:w-[180px] pl-2 pr-2 ${state.theme.secondaryColor} rounded`}>
                                     <div className="flex pt-2 pb-2">
-                                        <Star weight="fill" color="yellow" />
-                                        <Star weight="fill" color="yellow" />
-                                        <Star weight="fill" color="yellow" />
-                                        <Star weight="fill" color="yellow" />
-                                        <Star weight="fill" color="yellow" />
+                                        <Star weight="fill" color="orange" />
+                                        <Star weight="fill" color="orange" />
+                                        <Star weight="fill" color="orange" />
+                                        <Star weight="fill" color="orange" />
+                                        <Star weight="fill" color="orange" />
                                     </div>
                                     <small className="ml-1 mt-1">10</small>
                                 </div>
                                 <div className="xl:block flex justify-between">
-                                    <div className="flex items-center justify-between w-[140px] xl:w-[180px] pl-2 pr-2 bg-[#343434] rounded mt-2">
-                                        <div className="flex pt-2 pb-2 justify-between xl:w-[180px] text-[13px] text-[#b8b8b8]">
+                                    <div className={`flex items-center justify-between w-[140px] xl:w-[180px] pl-2 pr-2 ${state.theme.secondaryColor} rounded mt-2`}>
+                                        <div className={`flex pt-2 pb-2 justify-between xl:w-[180px] text-[13px] ${state.theme.textColor}`}>
                                             Status: <span className="xl:ml-0  ml-6">{novel.novel.status.toLowerCase()}</span>
                                         </div>
                                     </div>
-                                    <div className="flex items-center justify-between w-[140px] xl:w-[180px] pl-2 pr-2 bg-[#343434] rounded mt-2">
-                                        <div className="flex pt-2 pb-2 justify-between xl:w-[180px] text-[13px] text-[#b8b8b8]">
-                                            Type: <strong className="text-zinc-200 xl:ml-0 ml-6">Manhwa</strong>
+                                    <div className={`flex items-center justify-between w-[140px] xl:w-[180px] pl-2 pr-2 ${state.theme.secondaryColor} rounded mt-2`}>
+                                        <div className={`flex pt-2 pb-2 justify-between xl:w-[180px] text-[13px] ${state.theme.textColor}`}>
+                                            Type: <strong className={`${state.theme.textColor} xl:ml-0 ml-6`}>Manhwa</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -110,34 +112,34 @@ export const Novel = () => {
                             </div>
                             <div>
                                 <h3 className="text-[14px] mt-10">Synopsis {novel.novel.title}</h3>
-                                <p className="mt-2 text-[14px] text-[#b8b8b8]">{novel.novel.description}</p>
+                                <p className={`${state.theme.textColor} mt-2 text-[14px]`}>{novel.novel.description}</p>
                             </div>
-                            <div className="grid grid-cols-2 mt-4 gap-4">
+                            <div className={`grid grid-cols-2 mt-4 gap-4 ${state.theme.textColor}`}>
                                 <div>
                                     <div className="text-[14px]">Released</div>
-                                    <span className="mt-2 text-[14px] text-[#b8b8b8]">asurascans.com</span>
+                                    <span className="mt-2 text-[14px]">asurascans.com</span>
                                 </div>
                                 <div>
                                     <div className="text-[14px]">Author</div>
-                                    <span className="mt-2 text-[14px] text-[#b8b8b8]">{novel.novel.author.name}</span>
+                                    <span className="mt-2 text-[14px] ">{novel.novel.author.name}</span>
                                 </div>
                                 <div>
                                     <div className="text-[14px]">Artist</div>
-                                    <span className="mt-2 text-[14px] text-[#b8b8b8]">{novel.novel.artist.name}</span>
+                                    <span className="mt-2 text-[14px]">{novel.novel.artist.name}</span>
                                 </div>
                                 <div>
                                     <div className="text-[14px]">PostedBy</div>
-                                    <span className="mt-2 text-[14px] text-[#b8b8b8]">asura</span>
+                                    <span className="mt-2 text-[14px]">asura</span>
                                 </div>
                                 <div>
                                     <div className="text-[14px]">Posted On</div>
-                                    <span className="mt-2 text-[14px] text-[#b8b8b8]">{handleDate(novel.novel.createdAt)}</span>
+                                    <span className="mt-2 text-[14px]">{handleDate(novel.novel.createdAt)}</span>
                                 </div>
                             </div>
                             <div>
                                 <div className="text-[14px] mt-2">Genres</div>
                                 {novel.novel.categories.map((i: any, k: number) => {
-                                    return <div key={k} className="mt-2 text-[14px] mr-2 inline-block p-1 bg-[#343434] rounded">
+                                    return <div key={k} className={`mt-2 text-[14px] mr-2 inline-block p-1 ${state.theme.secondaryColor} rounded`}>
                                         <a key={i.Category.id} href={`http://localhost:3500/api/novels?genre=${i.Category.id}`} rel="tag">{i.Category.name}</a>
                                     </div>
                                 })}

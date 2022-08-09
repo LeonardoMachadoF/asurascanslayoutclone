@@ -7,12 +7,12 @@ type Props = {
 
 export const PopularHeader = ({ item }: Props) => {
     return (
-        <div className="w-[100%] xl:w-[68%] bg-gradient-to-br h-[100%] relative overflow-hidden">
-            <img className='absolute blur opacity-25 w-[100%]' src={`${item[0].imagesUrl}`} alt="" />
+        <div className="w-[100%] xl:w-[68%] bg-gradient-to-br h-[100%] relative overflow-hidden bg-zinc-600">
+            <img className='absolute blur opacity-30 w-[100%]' src={`${item[0].imagesUrl}`} alt="" />
             <div className="absolute w-[100%] p-5 flex justify-between items-center">
                 <div className=" mt-5">
                     <div className="flex items-center">
-                        <Star size={50} weight='fill' color="yellow" />
+                        <Star size={50} weight='fill' color="orange" />
                         <div className="ml-2">
                             <Link to={`/${item[0].slug}`} className="text-2xl">{item[0].title}</Link>
                             <div className="text-yellow-300">{item[0].origin.name === 'Coreia Do Sul' ? 'Manhwa' : 'Manga'}</div>

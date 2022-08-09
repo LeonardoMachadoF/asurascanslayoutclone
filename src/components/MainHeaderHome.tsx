@@ -8,7 +8,7 @@ type Props = {
 
 export const MainHeaderHome = ({ list }: Props) => {
     return (
-        <div className="flex h-[300px] justify-between">
+        <div className="flex h-[300px] justify-between text-zinc-100">
             {list && <PopularHeader item={list} />}
 
             <div className={`hidden xl:block w-[30%] overflow-hidden relative bg-slate-600 bg-[url('${list[1].imagesUrl}')] bg-center bg-cover`}>

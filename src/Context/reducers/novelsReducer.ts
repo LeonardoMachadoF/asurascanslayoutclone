@@ -38,10 +38,10 @@ export const novelsInitialState: NovelsInitialStateType = {
 export const novelsReducer = (state: NovelsInitialStateType, action: ActionReducerType) => {
     switch (action.type) {
         case 'SETNOVELS':
-            return state = action.payload
+            return { ...state, novels: action.payload }
             break;
         case 'RESETNOVELS':
-            return state = novelsInitialState
+            return state = { ...state, novels: [] }
     }
 
     return state;

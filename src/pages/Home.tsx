@@ -1,7 +1,6 @@
 import axios, { AxiosResponse } from "axios"
 import { useContext, useEffect, useState } from "react"
 import { ItemLatest } from "../components/ItemLatest"
-import { ItemPopular } from "../components/ItemPopular"
 import { MainHeaderHome } from "../components/MainHeaderHome"
 import { PopularItens } from "../components/PopularItens"
 import { Context } from "../Context/Context"
@@ -29,7 +28,6 @@ export const Home = () => {
                 dispatch({ type: 'SETNOVELS', payload: { novels: listReq.data.novels } })
             }
         }
-
         getList();
     }, [])
 
@@ -52,19 +50,19 @@ export const Home = () => {
         <main className="flex-1 sm:m-6 overflow-hidden">
             {list
                 ? <MainHeaderHome list={list} />
-                : <div className="flex h-[300px] justify-between"></div>
+                : <div className=" flex h-[300px] justify-between"></div>
             }
 
             {popularList
                 ? <PopularItens list={popularList} />
-                : <div className="h-[360px] bg-[#222222] mt-10 ">
+                : <div className={`h-[360px] ${state.theme.mainColor} mt-10`} >
                     <div className="font-bold pl-4 pt-2 pb-2 border-b-[1px] border-zinc-600"></div>
                 </div>
             }
 
 
 
-            <div className="bg-[#222222] mt-4">
+            <div className={`${state.theme.mainColor} mt-4`}>
                 <div className="font-bold pl-4 pt-2 pb-2 border-b-[1px] border-zinc-600">Latest Update</div>
                 <div className="flex flex-wrap justify-center">
                     {all &&

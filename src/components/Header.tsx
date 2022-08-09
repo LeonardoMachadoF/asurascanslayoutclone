@@ -1,10 +1,25 @@
-import { MagnifyingGlass, Moon, Star, Sun } from "phosphor-react"
+import { MagnifyingGlass, Moon, Star, Sun, SunDim } from "phosphor-react"
+import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
+import { Context } from "../Context/Context"
 
 export const Header = () => {
+    const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+    const { state, dispatch } = useContext(Context)
+    const switchTheme = () => {
+        dispatch({ type: 'CHANGETHEME' })
+        setTheme('light')
+
+    }
+    const switchTheme2 = () => {
+        dispatch({ type: 'RETURNTHEME' })
+        setTheme('dark')
+
+    }
+
     return (
         <div>
-            <div className="bg-[#0b0a0d]">
+            <div className={`${state.theme.secondaryColor}`}>
                 <div className="flex justify-between items-center max-w-[1200px] m-auto h-[60px]">
                     <Link to='/' className="logo">
                         <img
@@ -18,15 +33,20 @@ export const Header = () => {
                         <div className="flex items-center">
                             <input
                                 type="text"
-                                className="sm:w-[350px] w-[60%] h-[34px] bg-[#17151b] pt-1.5 pr-7 pb-1.5 pl-5 mr-10 rounded border border-zinc-800 placeholder-zinc-100 text-sm"
+                                className={`sm:w-[350px] w-[60%] h-[34px] ${state.theme.mainColor} pt-1.5 pr-7 pb-1.5 pl-5 mr-10 rounded border border-zinc-800 ${state.theme.place} text-sm`}
                                 placeholder="Search"
                             />
-                            <MagnifyingGlass size={16} color="#fafafa" className="relative right-[70px]" />
+                            <MagnifyingGlass size={16} color={`${state.theme.iconColor}`} className="relative right-[70px]" />
                         </div>
-                        <label htmlFor="checkTheme" className="flex items-center">
+                        <label htmlFor="checkTheme" className="flex items-center cursor-pointer">
                             <input id="checkTheme" className="opacity-0 w-0 h-0" type="checkbox" />
                             <span>
-                                <Moon size={32} color="#eee" />
+                                {theme === 'dark' &&
+                                    <Moon size={32} color={`${state.theme.iconColor}`} onClick={switchTheme} />
+                                }
+                                {theme === 'light' &&
+                                    <SunDim size={32} color={`${state.theme.iconColor}`} onClick={switchTheme2} />
+                                }
                             </span>
                         </label>
                     </div>

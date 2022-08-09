@@ -1,7 +1,10 @@
 import { Star } from "phosphor-react"
+import { useContext } from "react"
 import { Link } from "react-router-dom"
+import { Context } from "../Context/Context"
 
 export const ListItemAside = ({ item, k }: any) => {
+    const { state, dispatch } = useContext(Context)
     return (
         <div className="xl:w-[100%] pt-2 pb-2">
             <ul>
@@ -19,8 +22,8 @@ export const ListItemAside = ({ item, k }: any) => {
                     </div>
                     <div className="sm:w-[200px] w-[100%] h-[100%] flex flex-col justify-around">
                         <Link to={`${item.slug}`} className="text-[15px] font-bold hover:text-purple-600 transition-all">{item.title}</Link>
-                        <div className="text-zinc-300 text-sm">
-                            <span className="text-zinc-50 flex flex-wrap gap-x-[3px]">
+                        <div className={`${state.theme.textColor} text-sm`}>
+                            <span className=" flex flex-wrap gap-x-[3px]">
                                 <span className="mr-1">Genres:</span>
                                 {item.categories.map((i: any, k: number) => {
                                     if (item.categories.length === k + 1) {
@@ -33,11 +36,11 @@ export const ListItemAside = ({ item, k }: any) => {
                             </span>
                         </div>
                         <div className="flex items-center">
-                            <Star size={16} weight='fill' color="yellow" />
-                            <Star size={16} weight='fill' color="yellow" />
-                            <Star size={16} weight='fill' color="yellow" />
-                            <Star size={16} weight='fill' color="yellow" />
-                            <Star size={16} weight='fill' color="yellow" />
+                            <Star size={16} weight='fill' color="orange" />
+                            <Star size={16} weight='fill' color="orange" />
+                            <Star size={16} weight='fill' color="orange" />
+                            <Star size={16} weight='fill' color="orange" />
+                            <Star size={16} weight='fill' color="orange" />
                             <span className="ml-1 mt-1 text-sm">9.9</span>
                         </div>
                     </div>
