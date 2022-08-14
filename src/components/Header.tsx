@@ -16,19 +16,13 @@ export const Header = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (slug.length !== 0) {
-            if (timer) {
-                clearTimeout(timer);
-            }
 
-            timer = setTimeout(handleSearchButton, 500);
-        } else {
-            navigate('/')
-            if (timer) {
-                clearTimeout(timer);
-            }
+        if (timer) {
+            clearTimeout(timer);
         }
-        console.log(slug)
+
+        timer = setTimeout(handleSearchButton, 500);
+
     }, [slug])
 
 
