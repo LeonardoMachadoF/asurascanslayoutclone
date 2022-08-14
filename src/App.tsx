@@ -15,7 +15,7 @@ function App() {
         if (state.user.user.name === "") {
             const getUser = async () => {
                 const session = Cookies.get('token');
-                let res = await fetch(`http://localhost:3500/api/user/${session}`);
+                let res = await fetch(`https://murmuring-reef-63947.herokuapp.com/api/user/${session}`);
                 let json = await res.json();
                 setUser(json)
                 dispatch({ type: 'SETUSER', payload: { user: json } })
