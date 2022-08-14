@@ -1,11 +1,13 @@
+import Cookies from "js-cookie"
 import { MagnifyingGlass, Moon, Star, Sun, SunDim } from "phosphor-react"
-import { useContext, useState } from "react"
-import { Link } from "react-router-dom"
+import { useContext, useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import { Context } from "../Context/Context"
 
 export const Header = () => {
     const [theme, setTheme] = useState<'light' | 'dark'>('dark')
     const { state, dispatch } = useContext(Context)
+    const navigate = useNavigate()
     const switchTheme = () => {
         dispatch({ type: 'CHANGETHEME' })
         setTheme('light')
@@ -16,6 +18,13 @@ export const Header = () => {
         setTheme('dark')
 
     }
+
+    const handleLogout = () => {
+        dispatch({ type: 'REMOVEUSER' });
+        Cookies.remove('token')
+        location.reload();
+    }
+
 
     return (
         <div>
@@ -30,6 +39,15 @@ export const Header = () => {
                     </Link>
 
                     <div className="searchArea flex items-center">
+                        {!state.user.user.name &&
+                            <button className="mr-4" onClick={() => navigate('/login')}>Entrar</button>
+                        }
+                        {state.user.user.name &&
+                            <div className="mr-4">
+                                Olá {state.user.user.name}
+                                <button className="ml-8" onClick={handleLogout}>Logout</button>
+                            </div>
+                        }
                         <div className="flex items-center">
                             <input
                                 type="text"

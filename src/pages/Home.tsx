@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios"
+import Cookies from "js-cookie"
 import { useContext, useEffect, useState } from "react"
 import { ItemLatest } from "../components/ItemLatest"
 import { MainHeaderHome } from "../components/MainHeaderHome"
@@ -10,6 +11,7 @@ export const Home = () => {
     const [list, setList] = useState<any>()
     const [popularList, setPopularList] = useState<AxiosResponse<any, any>>()
     const [all, setAll] = useState<any>()
+
     const { state, dispatch } = useContext(Context);
 
     useEffect(() => {

@@ -2,10 +2,12 @@ import React, { createContext, ReactNode, useReducer } from "react";
 import { ActionReducerType } from "../types/ActionReducerType";
 import { novelsInitialState, NovelsInitialStateType, novelsReducer } from "./reducers/novelsReducer";
 import { themeInitialState, themeInitialStateType, themeReducer } from "./reducers/themeReducer";
+import { userInitialState, userInitialStateType, userReducer } from "./reducers/userReducer";
 
 type initialStateType = {
     novels: NovelsInitialStateType,
-    theme: themeInitialStateType
+    theme: themeInitialStateType,
+    user: userInitialStateType
 }
 
 type ContextType = {
@@ -19,12 +21,14 @@ type ChildrenType = {
 
 export const initialState: initialStateType = {
     novels: novelsInitialState,
-    theme: themeInitialState
+    theme: themeInitialState,
+    user: userInitialState
 }
 
 export const mainReducer = (state: initialStateType, action: ActionReducerType) => ({
     novels: novelsReducer(state.novels, action),
-    theme: themeReducer(state.theme, action)
+    theme: themeReducer(state.theme, action),
+    user: userReducer(state.user, action)
 })
 
 export const Context = createContext<ContextType>({
