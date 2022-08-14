@@ -1,13 +1,37 @@
+import axios from "axios"
 import Cookies from "js-cookie"
-import { MagnifyingGlass, Moon, Star, Sun, SunDim } from "phosphor-react"
-import { useContext, useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { MagnifyingGlass, Moon, Star, SunDim } from "phosphor-react"
+import { ChangeEvent, useContext, useEffect, useState } from "react"
+import { Link, useNavigate, useSearchParams } from "react-router-dom"
 import { Context } from "../Context/Context"
 
+let timer: any;
+
 export const Header = () => {
-    const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+    const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+    const [slug, setSlug] = useState('');
+    const [filtered, setFiltered] = useState([])
+
     const { state, dispatch } = useContext(Context)
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (slug.length !== 0) {
+            if (timer) {
+                clearTimeout(timer);
+            }
+
+            timer = setTimeout(handleSearchButton, 500);
+        } else {
+            navigate('/')
+            if (timer) {
+                clearTimeout(timer);
+            }
+        }
+        console.log(slug)
+    }, [slug])
+
+
     const switchTheme = () => {
         dispatch({ type: 'CHANGETHEME' })
         setTheme('light')
@@ -23,6 +47,13 @@ export const Header = () => {
         dispatch({ type: 'REMOVEUSER' });
         Cookies.remove('token')
         location.reload();
+    }
+
+    const handleSearchButton = async () => {
+        navigate(`/novels?slug=${slug}`, { replace: true })
+        let listReq = await axios.get(`https://murmuring-reef-63947.herokuapp.com/api/novels?slug=${slug}`)
+        setFiltered(listReq.data.novels);
+        dispatch({ type: 'SETNOVELSSEARCH', payload: listReq.data.novels })
     }
 
 
@@ -51,10 +82,11 @@ export const Header = () => {
                         <div className="flex items-center">
                             <input
                                 type="text"
+                                onChange={e => setSlug(e.target.value)}
                                 className={`sm:w-[350px] w-[60%] h-[34px] ${state.theme.mainColor} pt-1.5 pr-7 pb-1.5 pl-5 mr-10 rounded border border-zinc-800 ${state.theme.place} text-sm`}
                                 placeholder="Search"
                             />
-                            <MagnifyingGlass size={16} color={`${state.theme.iconColor}`} className="relative right-[70px]" />
+                            <MagnifyingGlass onClick={handleSearchButton} size={16} color={`${state.theme.iconColor}`} className="cursor-pointer relative right-[70px]" />
                         </div>
                         <label htmlFor="checkTheme" className="flex items-center cursor-pointer">
                             <input id="checkTheme" className="opacity-0 w-0 h-0" type="checkbox" />

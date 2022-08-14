@@ -6,6 +6,7 @@ import { Context } from "./Context/Context"
 import { Home } from "./pages/Home"
 import { Login } from "./pages/Login"
 import { Novel } from "./pages/Novel"
+import { novelsSearch as NovelsSearch } from './pages/NovelsSearch'
 
 function App() {
     const { state, dispatch } = useContext(Context)
@@ -29,6 +30,7 @@ function App() {
             <Layout>
                 <Routes>
                     <Route path='/' element={<Home />} />
+                    <Route path='/novels' element={<NovelsSearch />} />
                     <Route path='/:slug' element={<Novel />} />
                     <Route path='/login' element={<Login />} />
                 </Routes>

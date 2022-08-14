@@ -31,10 +31,6 @@ export const Login = () => {
         }
     }
 
-    console.log({ email, password })
-
-
-
     return (
         <div className={`flex-1 flex justify-center`}>
             <form onSubmit={handleSubmit} className="mt-[20%] h-[300px] w-[600px] flex flex-col items-center">
