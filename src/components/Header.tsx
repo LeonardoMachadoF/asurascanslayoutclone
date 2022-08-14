@@ -8,21 +8,22 @@ import { Context } from "../Context/Context"
 let timer: any;
 
 export const Header = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-    const [slug, setSlug] = useState('');
-    const [filtered, setFiltered] = useState([])
+    const [slug, setSlug] = useState(searchParams.get('slug'));
+    const [filtered, setFiltered] = useState([]);
 
     const { state, dispatch } = useContext(Context)
     const navigate = useNavigate()
 
     useEffect(() => {
+        if (searchParams.get('slug') !== null && slug !== '') {
+            if (timer) {
+                clearTimeout(timer);
+            }
 
-        if (timer) {
-            clearTimeout(timer);
+            timer = setTimeout(handleSearchButton, 500);
         }
-
-        timer = setTimeout(handleSearchButton, 500);
-
     }, [slug])
 
 
@@ -76,7 +77,10 @@ export const Header = () => {
                         <div className="flex items-center">
                             <input
                                 type="text"
-                                onChange={e => setSlug(e.target.value)}
+                                onChange={e => {
+                                    setSlug(e.target.value)
+                                    searchParams.set('slug', '')
+                                }}
                                 className={`sm:w-[350px] w-[60%] h-[34px] ${state.theme.mainColor} pt-1.5 pr-7 pb-1.5 pl-5 mr-10 rounded border border-zinc-800 ${state.theme.place} text-sm`}
                                 placeholder="Search"
                             />
