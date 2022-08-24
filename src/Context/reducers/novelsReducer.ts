@@ -1,4 +1,3 @@
-import { createContext } from "react"
 import { ActionReducerType } from "../../types/ActionReducerType"
 
 export type Novel = {
@@ -38,7 +37,7 @@ export const novelsInitialState: NovelsInitialStateType = {
 export const novelsReducer = (state: NovelsInitialStateType, action: ActionReducerType) => {
     switch (action.type) {
         case 'SETNOVELS':
-            return { ...state, novels: action.payload }
+            return state = action.payload
             break;
         case 'RESETNOVELS':
             return state = { ...state, novels: [] }
