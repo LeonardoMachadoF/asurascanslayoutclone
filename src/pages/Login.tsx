@@ -3,26 +3,22 @@ import { FormEvent, useContext, useState } from "react"
 import { Context } from "../Context/Context"
 
 export const Login = () => {
-    const { state, dispatch } = useContext(Context)
+    const { state } = useContext(Context)
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        let myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
         let urlencoded = new URLSearchParams();
         urlencoded.append("email", email);
         urlencoded.append("password", password);
 
-        let requestOptions = {
+        let res = await fetch("https://murmuring-reef-63947.herokuapp.com/api/user/login", {
             method: 'POST',
-            headers: myHeaders,
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: urlencoded
-        };
-
-        let res = await fetch("https://murmuring-reef-63947.herokuapp.com/api/user/login", requestOptions);
+        });
         let json = await res.json();
 
         if (json.token) {

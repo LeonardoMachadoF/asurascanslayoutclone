@@ -1,8 +1,7 @@
 import axios from "axios"
-import { Star } from "phosphor-react"
 import { useContext, useEffect, useState } from "react"
-import { Link } from "react-router-dom"
 import { Context } from "../Context/Context"
+import { NovelType } from "../types/NovelType"
 import { DataRange } from "./DataRange"
 import { ListItemAside } from "./ListItemAside"
 
@@ -10,7 +9,7 @@ export const Aside = () => {
     const [activeW, setActiveW] = useState<boolean>(true)
     const [activeM, setActiveM] = useState<boolean>(false);
     const [activeA, setActiveA] = useState<boolean>(false);
-    const [all, setAll] = useState<any>();
+    const [all, setAll] = useState<NovelType[] | undefined>();
     const { state, dispatch } = useContext(Context);
 
     useEffect(() => {
@@ -48,7 +47,6 @@ export const Aside = () => {
         }
     }
 
-
     return (
         <div className={`xl:w-[340px] h-[100%] max-w-[100%] ${state.theme.mainColor} mt-10 m-auto xl:m-0 xl:mt-10`}>
             <div className={`${state.theme.mainColor} p-2 rounded ml-2 mr-2`}>
@@ -61,7 +59,7 @@ export const Aside = () => {
 
             <div className="flex xl:block flex-wrap xl:flex-nowrap overflow-hidden">
                 {all &&
-                    all.map((i: any, k: number) => (
+                    all.map((i: NovelType, k: number) => (
                         <ListItemAside key={k} item={i} k={k + 1} />
                     ))
                 }

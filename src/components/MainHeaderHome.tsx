@@ -1,9 +1,9 @@
-import { AxiosResponse } from "axios"
 import { Link } from "react-router-dom"
+import { NovelType } from "../types/NovelType"
 import { PopularHeader } from "./PopularHeader"
 
 type Props = {
-    list: any
+    list: NovelType[]
 }
 
 export const MainHeaderHome = ({ list }: Props) => {

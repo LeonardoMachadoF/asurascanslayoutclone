@@ -7,10 +7,11 @@ import { Home } from "./pages/Home"
 import { Login } from "./pages/Login"
 import { Novel } from "./pages/Novel"
 import { novelsSearch as NovelsSearch } from './pages/NovelsSearch'
+import { UserType } from "./types/UserType"
 
 function App() {
     const { state, dispatch } = useContext(Context)
-    const [user, setUser] = useState<any>({})
+    const [user, setUser] = useState<UserType | undefined>()
 
     useEffect(() => {
         if (state.user.user.name === "") {
@@ -24,7 +25,6 @@ function App() {
             getUser()
         }
     }, []);
-
     return (
         <div className={`${state.theme.secondaryColor} ${state.theme.textColor}`}>
             <Layout>

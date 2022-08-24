@@ -1,15 +1,16 @@
 import React, { createContext, ReactNode, useReducer } from "react";
 import { ActionReducerType } from "../types/ActionReducerType";
+import { NovelsType } from "../types/NovelsType";
 import { novelsSearchInitialState, novelsSearchReducer } from "./reducers/novelSearchReducer";
-import { novelsInitialState, NovelsInitialStateType, novelsReducer } from "./reducers/novelsReducer";
+import { novelsInitialState, novelsReducer } from "./reducers/novelsReducer";
 import { themeInitialState, themeInitialStateType, themeReducer } from "./reducers/themeReducer";
 import { userInitialState, userInitialStateType, userReducer } from "./reducers/userReducer";
 
 type initialStateType = {
-    novels: NovelsInitialStateType,
+    novels: NovelsType,
     theme: themeInitialStateType,
     user: userInitialStateType,
-    novelsSearch: NovelsInitialStateType
+    novelsSearch: NovelsType
 }
 
 type ContextType = {

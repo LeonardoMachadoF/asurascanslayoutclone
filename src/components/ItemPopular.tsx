@@ -2,8 +2,13 @@ import { Star } from "phosphor-react"
 import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { Context } from "../Context/Context"
+import { NovelType } from "../types/NovelType"
 
-export const ItemPopular = ({ item }: any) => {
+type Props = {
+    item: NovelType
+}
+
+export const ItemPopular = ({ item }: Props) => {
     const { state, dispatch } = useContext(Context)
     return (
         <div className={`p-4 pt-5 w-[164px]`}>

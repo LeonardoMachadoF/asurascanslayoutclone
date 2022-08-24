@@ -1,7 +1,8 @@
 import { ActionReducerType } from "../../types/ActionReducerType"
+import { UserType } from "../../types/UserType"
 
 export type userInitialStateType = {
-    user: any
+    user: UserType
 }
 
 export const userInitialState: userInitialStateType = {

@@ -1,8 +1,10 @@
 import { Star } from "phosphor-react"
 import { Link } from "react-router-dom"
+import { Category } from "../types/CategoryType"
+import { NovelType } from "../types/NovelType"
 
 type Props = {
-    item: any
+    item: NovelType[]
 }
 
 export const PopularHeader = ({ item }: Props) => {
@@ -20,7 +22,7 @@ export const PopularHeader = ({ item }: Props) => {
                     </div>
                     <div>
                         <div className="w-[200px] overflow-hidden whitespace-nowrap text-sm">
-                            {item[0].categories.map((i: any, k: number) => {
+                            {item[0].categories.map((i: Category, k: number) => {
                                 if (item[0].categories.length === k + 1) {
                                     return <a key={i.Category.id} href={`http://localhost:3500/api/novels?genre=${i.Category.id}`} rel="tag">{i.Category.name}</a>
                                 } else {

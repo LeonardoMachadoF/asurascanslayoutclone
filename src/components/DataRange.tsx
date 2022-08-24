@@ -1,10 +1,9 @@
-import { useState } from "react";
 import { Link } from "react-router-dom"
 
 type Props = {
     range: string,
     active: boolean,
-    handleRangeClick: any
+    handleRangeClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 export const DataRange = ({ range, active, handleRangeClick }: Props) => {

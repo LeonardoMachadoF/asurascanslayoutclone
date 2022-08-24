@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom"
+import { NovelType } from "../types/NovelType"
 import { Chapter } from "./Chapter"
 
 type Props = {
-    item: any
+    item: NovelType
 }
 
 export const ItemLatest = ({ item }: Props) => {

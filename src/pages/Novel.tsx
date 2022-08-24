@@ -4,9 +4,17 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom"
 import { Context } from "../Context/Context";
+import { Category } from "../types/CategoryType";
+import { NovelType } from "../types/NovelType";
+
+type NovelTypeResponse = {
+    novel: NovelType;
+    chapters: { id: string, title: string, slug: string, volume: number, number: number }[] | [];
+    views: number
+}
 
 export const Novel = () => {
-    const [novel, setNovel] = useState<any>();
+    const [novel, setNovel] = useState<NovelTypeResponse | undefined>();
     const { slug } = useParams();
     const { state, dispatch } = useContext(Context);
 
@@ -26,7 +34,7 @@ export const Novel = () => {
 
     useEffect(() => {
         let getNovel = async () => {
-            let listReq: any = await axios.get(`https://murmuring-reef-63947.herokuapp.com/api/novel/${slug}`)
+            let listReq = await axios.get<NovelTypeResponse>(`https://murmuring-reef-63947.herokuapp.com/api/novel/${slug}`)
             setNovel(listReq.data)
         }
         getNovel();
@@ -138,7 +146,7 @@ export const Novel = () => {
                             </div>
                             <div>
                                 <div className="text-[14px] mt-2">Genres</div>
-                                {novel.novel.categories.map((i: any, k: number) => {
+                                {novel.novel.categories.map((i: Category, k: number) => {
                                     return <div key={k} className={`mt-2 text-[14px] mr-2 inline-block p-1 ${state.theme.secondaryColor} rounded`}>
                                         <a key={i.Category.id} href={`http://localhost:3500/api/novels?genre=${i.Category.id}`} rel="tag">{i.Category.name}</a>
                                     </div>

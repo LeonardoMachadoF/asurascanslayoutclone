@@ -2,8 +2,15 @@ import { Star } from "phosphor-react"
 import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { Context } from "../Context/Context"
+import { Category } from "../types/CategoryType"
+import { NovelType } from "../types/NovelType"
 
-export const ListItemAside = ({ item, k }: any) => {
+type Props = {
+    item: NovelType;
+    k: number
+}
+
+export const ListItemAside = ({ item, k }: Props) => {
     const { state, dispatch } = useContext(Context)
     return (
         <div className="xl:w-[100%] pt-2 pb-2">
@@ -13,7 +20,7 @@ export const ListItemAside = ({ item, k }: any) => {
                         {k}
                     </div>
                     <div>
-                        <Link to="" className="w-[64px] block mr-2">
+                        <Link to={`/${item.slug}`} className="w-[64px] block mr-2">
                             <img
                                 src={item.imagesUrl}
                                 alt=""
@@ -25,7 +32,7 @@ export const ListItemAside = ({ item, k }: any) => {
                         <div className={`${state.theme.textColor} text-sm`}>
                             <span className=" flex flex-wrap gap-x-[3px]">
                                 <span className="mr-1">Genres:</span>
-                                {item.categories.map((i: any, k: number) => {
+                                {item.categories.map((i: Category, k: number) => {
                                     if (item.categories.length === k + 1) {
                                         return <a key={i.Category.id} href={`http://localhost:3500/api/novels?genre=${i.Category.id}`} rel="tag">{i.Category.name}</a>
                                     } else {

@@ -1,17 +1,16 @@
 import axios from "axios"
 import Cookies from "js-cookie"
 import { MagnifyingGlass, Moon, Star, SunDim } from "phosphor-react"
-import { ChangeEvent, useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate, useSearchParams } from "react-router-dom"
 import { Context } from "../Context/Context"
 
 let timer: any;
 
 export const Header = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const [theme, setTheme] = useState<'light' | 'dark'>('dark');
     const [slug, setSlug] = useState(searchParams.get('slug'));
-    const [filtered, setFiltered] = useState([]);
 
     const { state, dispatch } = useContext(Context)
     const navigate = useNavigate()
@@ -47,7 +46,6 @@ export const Header = () => {
     const handleSearchButton = async () => {
         navigate(`/novels?slug=${slug}`, { replace: true })
         let listReq = await axios.get(`https://murmuring-reef-63947.herokuapp.com/api/novels?slug=${slug}`)
-        setFiltered(listReq.data.novels);
         dispatch({ type: 'SETNOVELSSEARCH', payload: listReq.data.novels })
     }
 
@@ -103,22 +101,22 @@ export const Header = () => {
             <div className="h-10 bg-[#913fe2] hidden sm:block">
                 <div className="max-w-[1200px] m-auto h-[100%] flex items-center justify-between">
                     <ul className="flex items-center h-[100%] w-[400px] justify-around text-[15px]">
-                        <li className="hover:bg-purple-700 h-[100%] flex items-center pl-2 pr-2 transition-all">
+                        <li className="hover:bg-purple-700 h-[100%] flex items-center pl-2 pr-2 transition-all text-white">
                             <Link to='/'>Home</Link>
                         </li>
-                        <li className="hover:bg-purple-700 h-[100%] flex items-center pl-2 pr-2 transition-all">
+                        <li className="hover:bg-purple-700 h-[100%] flex items-center pl-2 pr-2 transition-all text-white">
                             <Link to='/'>Bookmarks</Link>
                         </li>
-                        <li className="hover:bg-purple-700 h-[100%] flex items-center pl-2 pr-2 transition-all">
+                        <li className="hover:bg-purple-700 h-[100%] flex items-center pl-2 pr-2 transition-all text-white">
                             <Link to='/'>Comics</Link>
                         </li>
-                        <li className="hover:bg-purple-700 h-[100%] flex items-center pl-2 pr-2 transition-all">
+                        <li className="hover:bg-purple-700 h-[100%] flex items-center pl-2 pr-2 transition-all text-white">
                             <Link to='/'>Language ▼</Link>
                         </li>
                     </ul>
                     <div className="flex items-center rounded-sm p-1 pl-2 pr-2 bg-[rgb(0,0,0)] bg-opacity-30">
                         <Star size={16} color="#eee" className="mr-2" weight="bold" />
-                        <Link to='/' className="text-[12px]">Surprise Me</Link>
+                        <Link to='/' className="text-[12px] text-white">Surprise Me</Link>
                     </div>
                 </div>
             </div>
