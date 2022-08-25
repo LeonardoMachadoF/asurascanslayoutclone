@@ -1,28 +1,29 @@
-import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { ItemLatest } from "../components/ItemLatest"
 import { MainHeaderHome } from "../components/MainHeaderHome"
 import { PopularItens } from "../components/PopularItens"
 import { Context } from "../Context/Context"
+import { useApi } from "../libs/useApi"
 import { NovelsType } from "../types/NovelsType"
 import { NovelType } from "../types/NovelType"
 
 
 export const Home = () => {
+    const { state, dispatch } = useContext(Context);
+    const api = useApi();
+
     const [all, setAll] = useState<NovelsType | undefined>()
     const [list, setList] = useState<NovelsType | undefined>()
     const [latest, setLatest] = useState<NovelsType | undefined>()
-
-    const { state, dispatch } = useContext(Context);
 
     useEffect(() => {
         let getList = async () => {
             if (state.novels.novels.length > 0) {
                 setAll(state.novels)
             } else {
-                let listReq = await axios.get<NovelsType>('https://murmuring-reef-63947.herokuapp.com/api/novels')
-                dispatch({ type: 'SETNOVELS', payload: listReq.data })
-                setAll(listReq.data);
+                let novels = await api.listAllNovels();
+                dispatch({ type: 'SETNOVELS', payload: novels });
+                setAll(novels);
             }
         }
         getList();

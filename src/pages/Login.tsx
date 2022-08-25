@@ -1,29 +1,19 @@
-import Cookies from "js-cookie";
 import { FormEvent, useContext, useState } from "react"
 import { Context } from "../Context/Context"
+import { useApi } from "../libs/useApi";
 
 export const Login = () => {
     const { state } = useContext(Context)
+    const api = useApi();
+
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        let urlencoded = new URLSearchParams();
-        urlencoded.append("email", email);
-        urlencoded.append("password", password);
-
-        let res = await fetch("https://murmuring-reef-63947.herokuapp.com/api/user/login", {
-            method: 'POST',
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: urlencoded
-        });
-        let json = await res.json();
-
-        if (json.token) {
-            Cookies.set('token', json.token);
-            location.assign('/')
+        let succeess = await api.doLogin(email, password);
+        if (!succeess) {
+            console.log('Email e/ou senha incorreto!')
         }
     }
 

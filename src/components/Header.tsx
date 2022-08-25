@@ -1,14 +1,14 @@
-import axios from "axios"
-import Cookies from "js-cookie"
 import { MagnifyingGlass, Moon, Star, SunDim } from "phosphor-react"
 import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate, useSearchParams } from "react-router-dom"
 import { Context } from "../Context/Context"
-import { NovelsType } from "../types/NovelsType"
+import { useApi } from "../libs/useApi"
 
 let timer: any;
 
 export const Header = () => {
+    const api = useApi();
+
     const [searchParams] = useSearchParams();
     const [theme, setTheme] = useState<'light' | 'dark'>('dark');
     const [slug, setSlug] = useState(searchParams.get('slug'));
@@ -38,16 +38,13 @@ export const Header = () => {
 
     }
 
-    const handleLogout = () => {
-        dispatch({ type: 'REMOVEUSER' });
-        Cookies.remove('token')
-        location.reload();
+    const handleLogout = async () => {
+        await api.doLogout();
     }
 
     const handleSearchButton = async () => {
         navigate(`/novels?slug=${slug}`, { replace: true })
-        let listReq = await axios.get<NovelsType>(`https://murmuring-reef-63947.herokuapp.com/api/novels?slug=${slug}`)
-        dispatch({ type: 'SETNOVELSSEARCH', payload: listReq.data })
+        await api.getSearchNovel(slug as string)
     }
 
 

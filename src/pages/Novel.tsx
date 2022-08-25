@@ -1,10 +1,10 @@
-import axios from "axios";
 import { Bookmark, FacebookLogo, PinterestLogo, Star, TwitterLogo, WhatsappLogo } from "phosphor-react";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom"
 import { StarsComp } from "../components/StarsComp";
 import { Context } from "../Context/Context";
+import { useApi } from "../libs/useApi";
 import { Category } from "../types/CategoryType";
 import { NovelType } from "../types/NovelType";
 
@@ -15,6 +15,7 @@ type NovelTypeResponse = {
 }
 
 export const Novel = () => {
+    const api = useApi();
     const [novel, setNovel] = useState<NovelTypeResponse | undefined>();
     const { slug } = useParams();
     const { state, dispatch } = useContext(Context);
@@ -35,8 +36,8 @@ export const Novel = () => {
 
     useEffect(() => {
         let getNovel = async () => {
-            let listReq = await axios.get<NovelTypeResponse>(`https://murmuring-reef-63947.herokuapp.com/api/novel/${slug}`)
-            setNovel(listReq.data)
+            let novels = await api.getNovel(slug as string);
+            setNovel(novels)
         }
         getNovel();
     }, [slug])

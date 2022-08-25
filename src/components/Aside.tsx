@@ -1,11 +1,12 @@
-import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { Context } from "../Context/Context"
+import { useApi } from "../libs/useApi"
 import { NovelType } from "../types/NovelType"
 import { DataRange } from "./DataRange"
 import { ListItemAside } from "./ListItemAside"
 
 export const Aside = () => {
+    const api = useApi();
     const [activeW, setActiveW] = useState<boolean>(true)
     const [activeM, setActiveM] = useState<boolean>(false);
     const [activeA, setActiveA] = useState<boolean>(false);
@@ -17,9 +18,9 @@ export const Aside = () => {
             if (state.novels.novels.length > 0) {
                 setAll(state.novels.novels)
             } else {
-                let listReq = await axios.get('https://murmuring-reef-63947.herokuapp.com/api/novels')
-                dispatch({ type: 'SETNOVELS', payload: listReq.data });
-                setAll(listReq.data.novels)
+                let novels = await api.listAllNovels();
+                dispatch({ type: 'SETNOVELS', payload: novels });
+                setAll(novels.novels)
             }
         }
         setAllList()
