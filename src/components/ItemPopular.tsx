@@ -3,6 +3,7 @@ import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { Context } from "../Context/Context"
 import { NovelType } from "../types/NovelType"
+import { StarsComp } from "./StarsComp"
 
 type Props = {
     item: NovelType
@@ -25,15 +26,9 @@ export const ItemPopular = ({ item }: Props) => {
                 </div>
                 <div className="w-[90%] text-sm mt-1">
                     <Link to={`/${item.slug}`} className="font-bold mb-1 block hover:text-purple-600 transition-all cursor-pointer pt-2 h-16">{item.title.substr(0, 45)}</Link>
-                    <a href="/" className={`${state.theme.textColor} text-[12px]`}>Chapter 72</a>
-                    <div className="flex items-center">
-                        <Star weight="fill" color="orange" />
-                        <Star weight="fill" color="orange" />
-                        <Star weight="fill" color="orange" />
-                        <Star weight="fill" color="orange" />
-                        <Star weight="fill" color="orange" />
-                        <small className="ml-1 mt-1">10</small>
-                    </div>
+                    <Link to="/" className={`${state.theme.textColor} text-[12px]`}>Chapter 72</Link>
+                    <StarsComp rate={10} size={15} />
+
                 </div>
             </div>
         </div>

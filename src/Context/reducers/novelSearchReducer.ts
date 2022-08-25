@@ -8,10 +8,10 @@ export const novelsSearchInitialState: NovelsType = {
 export const novelsSearchReducer = (state: NovelsType, action: ActionReducerType) => {
     switch (action.type) {
         case 'SETNOVELSSEARCH':
-            return { ...state, novels: action.payload }
+            return state = action.payload
             break;
         case 'RESETNOVELSSEARCH':
-            return state = { ...state, novels: [] }
+            return state = novelsSearchInitialState
     }
 
     return state;

@@ -18,7 +18,7 @@ export const Aside = () => {
                 setAll(state.novels.novels)
             } else {
                 let listReq = await axios.get('https://murmuring-reef-63947.herokuapp.com/api/novels')
-                dispatch({ type: 'SETNOVELS', payload: { novels: listReq.data.novels } });
+                dispatch({ type: 'SETNOVELS', payload: listReq.data });
                 setAll(listReq.data.novels)
             }
         }

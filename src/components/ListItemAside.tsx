@@ -1,9 +1,9 @@
-import { Star } from "phosphor-react"
 import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { Context } from "../Context/Context"
 import { Category } from "../types/CategoryType"
 import { NovelType } from "../types/NovelType"
+import { StarsComp } from "./StarsComp"
 
 type Props = {
     item: NovelType;
@@ -34,22 +34,15 @@ export const ListItemAside = ({ item, k }: Props) => {
                                 <span className="mr-1">Genres:</span>
                                 {item.categories.map((i: Category, k: number) => {
                                     if (item.categories.length === k + 1) {
-                                        return <a key={i.Category.id} href={`http://localhost:3500/api/novels?genre=${i.Category.id}`} rel="tag">{i.Category.name}</a>
+                                        return <Link key={i.Category.id} to={`/novels?genre=${i.Category.id}`} rel="tag">{i.Category.name}</Link>
                                     } else {
-                                        return <a key={i.Category.id} href={`http://localhost:3500/api/novels?genre=${i.Category.id}`} rel="tag">{i.Category.name}, </a>
+                                        return <Link key={i.Category.id} to={`/novels?genre=${i.Category.id}`} rel="tag">{i.Category.name}, </Link>
                                     }
-
                                 })}
                             </span>
                         </div>
-                        <div className="flex items-center">
-                            <Star size={16} weight='fill' color="orange" />
-                            <Star size={16} weight='fill' color="orange" />
-                            <Star size={16} weight='fill' color="orange" />
-                            <Star size={16} weight='fill' color="orange" />
-                            <Star size={16} weight='fill' color="orange" />
-                            <span className="ml-1 mt-1 text-sm">9.9</span>
-                        </div>
+                        <StarsComp rate={9.2} size={14} />
+
                     </div>
                 </li>
             </ul>

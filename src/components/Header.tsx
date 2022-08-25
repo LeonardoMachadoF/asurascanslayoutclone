@@ -4,6 +4,7 @@ import { MagnifyingGlass, Moon, Star, SunDim } from "phosphor-react"
 import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate, useSearchParams } from "react-router-dom"
 import { Context } from "../Context/Context"
+import { NovelsType } from "../types/NovelsType"
 
 let timer: any;
 
@@ -45,8 +46,8 @@ export const Header = () => {
 
     const handleSearchButton = async () => {
         navigate(`/novels?slug=${slug}`, { replace: true })
-        let listReq = await axios.get(`https://murmuring-reef-63947.herokuapp.com/api/novels?slug=${slug}`)
-        dispatch({ type: 'SETNOVELSSEARCH', payload: listReq.data.novels })
+        let listReq = await axios.get<NovelsType>(`https://murmuring-reef-63947.herokuapp.com/api/novels?slug=${slug}`)
+        dispatch({ type: 'SETNOVELSSEARCH', payload: listReq.data })
     }
 
 

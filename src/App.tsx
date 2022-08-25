@@ -25,6 +25,7 @@ function App() {
             getUser()
         }
     }, []);
+
     return (
         <div className={`${state.theme.secondaryColor} ${state.theme.textColor}`}>
             <Layout>

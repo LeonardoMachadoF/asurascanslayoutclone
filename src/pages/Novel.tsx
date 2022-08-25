@@ -3,6 +3,7 @@ import { Bookmark, FacebookLogo, PinterestLogo, Star, TwitterLogo, WhatsappLogo 
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom"
+import { StarsComp } from "../components/StarsComp";
 import { Context } from "../Context/Context";
 import { Category } from "../types/CategoryType";
 import { NovelType } from "../types/NovelType";
@@ -73,14 +74,7 @@ export const Novel = () => {
                             </div>
                             <div>
                                 <div className={`flex items-center justify-between w-[300px] xl:w-[180px] pl-2 pr-2 ${state.theme.secondaryColor} rounded`}>
-                                    <div className="flex pt-2 pb-2">
-                                        <Star weight="fill" color="orange" />
-                                        <Star weight="fill" color="orange" />
-                                        <Star weight="fill" color="orange" />
-                                        <Star weight="fill" color="orange" />
-                                        <Star weight="fill" color="orange" />
-                                    </div>
-                                    <small className="ml-1 mt-1">10</small>
+                                    <StarsComp rate={9} size={16} />
                                 </div>
                                 <div className="xl:block flex justify-between">
                                     <div className={`flex items-center justify-between w-[140px] xl:w-[180px] pl-2 pr-2 ${state.theme.secondaryColor} rounded mt-2`}>
