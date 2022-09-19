@@ -58,18 +58,11 @@ export const Header = () => {
                             className="w-[50px]"
                             alt=""
                         />
+
                     </Link>
 
                     <div className="searchArea flex items-center">
-                        {!state.user.user.name &&
-                            <button className="mr-4" onClick={() => navigate('/login')}>Entrar</button>
-                        }
-                        {state.user.user.name &&
-                            <div className="mr-4">
-                                Olá {state.user.user.name}
-                                <button className="ml-8" onClick={handleLogout}>Logout</button>
-                            </div>
-                        }
+
                         <div className="flex items-center">
                             <input
                                 type="text"
@@ -93,6 +86,17 @@ export const Header = () => {
                                 }
                             </span>
                         </label>
+                        <div className="ml-10">
+                            {!state.user.user.name &&
+                                <button className="mr-4" onClick={() => navigate('/login')}>Entrar</button>
+                            }
+                            {state.user.user.name &&
+                                <div className="mr-4">
+                                    Olá {state.user.user.name}
+                                    <button className="ml-8" onClick={handleLogout}>Logout</button>
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
