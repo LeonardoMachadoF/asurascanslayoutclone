@@ -1,4 +1,4 @@
-# asurascanslayoutclone (ainda em desenvolvimento)
+# asurascanslayoutclone (CANCELADO)
 Projeto feito utilizando o layout do site asurascans.com, porém com API e código próprio
 
 
